@@ -6,9 +6,23 @@ const bodyParser = require('koa-bodyparser')
 const miSend = require('./mi-send')
 const miLog = require('./mi-log')
 const miHttpError = require('./mi-http-error')
-
+const miRule = require('./mi-rule')
 
 module.exports = (app) => {
+    miRule({
+        app,
+        rules: [
+            {
+                path: path.join(__dirname, '../controller'),
+                name: 'controller'
+            },
+            {
+                path: path.join(__dirname, '../service'),
+                name: 'service'
+            }
+        ]
+    })
+
     app.use(miHttpError({
         errorPageFolder: path.resolve(__dirname, '../errorPage')
     }))

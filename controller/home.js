@@ -1,5 +1,3 @@
-const homeService = require('../service/home')
-
 module.exports = {
     index: async (ctx, next) => {
         await ctx.render("home/index", { title: "iKcamp欢迎您" })
@@ -30,8 +28,9 @@ module.exports = {
 
     // 增加响应表单请求的路由
     doLogin: async (ctx, next) => {
+        const { app } = ctx
         let { name, password } = ctx.request.body
-        let res = await homeService.login(name, password)
+        let res = await app.service.home.login(name, password)
         if (res.status === -1) {
             await ctx.render('home/login', res.data)
         } else {
