@@ -10,7 +10,7 @@ module.exports = {
         // 访问 /home?name=tumobi&age=30&age=40
         console.log(ctx.request.query) // 输出 { name: 'tumobi', age: [ '30', '40' ] }
         console.log(ctx.request.querystring) // 输出 name=tumobi&age=30&age=40
-        ctx.body = '<h1>home page</h1>'
+        ctx.send({status: 200})
     },
 
     // 请求参数放在 url 中
@@ -38,5 +38,8 @@ module.exports = {
             ctx.state.title = '个人中心'
             await ctx.render('home/success', res.data)
         }
+        // 返回 json 数据
+        // ctx.set("Content-Type", "application/json")
+        // ctx.body = JSON.stringify(json)
     }
 }
