@@ -3,9 +3,12 @@ const bodyParser = require('koa-bodyparser')
 const router = require('./router')
 const nunjucks = require('koa-nunjucks-2')
 const path = require('path')
+const staticFiles = require('koa-static')
 
 const app = new Koa()
 app.use(bodyParser())
+
+app.use(staticFiles(path.resolve(__dirname, "./public")))
 
 app.use(nunjucks({
     ext: 'html',

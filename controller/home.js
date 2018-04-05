@@ -1,6 +1,10 @@
 const homeService = require('../service/home')
 
 module.exports = {
+    index: async (ctx, next) => {
+        await ctx.render("home/index", { title: "iKcamp欢迎您" })
+    },
+
     // 请求参数放在 url ？ 后面
     home: async (ctx, next) => {
         // 访问 /home?name=tumobi&age=30&age=40
@@ -27,7 +31,12 @@ module.exports = {
     // 增加响应表单请求的路由
     doLogin: async (ctx, next) => {
         let { name, password } = ctx.request.body
-        let data = await homeService.login(name, password)
-        ctx.response.body = data
+        let res = await homeService.login(name, password)
+        if (res.status === -1) {
+            await ctx.render('home/login', res.data)
+        } else {
+            ctx.state.title = '个人中心'
+            await ctx.render('home/success', res.data)
+        }
     }
 }

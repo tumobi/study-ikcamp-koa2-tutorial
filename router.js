@@ -2,6 +2,8 @@ const router = require('koa-router')()
 const homeController = require('./controller/home')
 
 module.exports = (app) => {
+    router.get('/', homeController.index)
+
     // 请求参数放在 url ？ 后面
     router.get('/home', homeController.home)
 

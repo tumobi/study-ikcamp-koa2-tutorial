@@ -8,17 +8,3 @@
     </div>
 </div>
 {% endblock %}
-{% block content %}
-<div class="hp-dialog">
-  <div class="hp-box">
-    <form action="/login" method="post">
-      <h1>到达战场</h1>
-      <p class="error">{{content}}</p>
-      <input type="text" name="name" placeholder="请输入用户名：ikcamp">
-      <input type="password" name="password" placeholder="请输入密码：123456">
-      <button>GoGoGo</button>
-    </form>
-  </div>
-</div>
-<div class="hp-overlay"></div>
-{% endblock %}
