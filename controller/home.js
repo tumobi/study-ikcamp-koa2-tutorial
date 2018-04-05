@@ -19,16 +19,9 @@ module.exports = {
     // 请求参数放在 body 中，需要安装 npm i koa-bodyparser -S
     // 增加返回表单页面的路由
     login: async (ctx, next) => {
-        ctx.response.body =
-            `
-      <form action="/login" method="post">
-        <input name="name" type="text" placeholder="请输入用户名：ikcamp"/> 
-        <br/>
-        <input name="password" type="text" placeholder="请输入密码：123456"/>
-        <br/> 
-        <button>GoGoGo</button>
-      </form>
-    `
+        await ctx.render('home/login', {
+            btnName: 'GOGOGO'
+        })
     },
 
     // 增加响应表单请求的路由
