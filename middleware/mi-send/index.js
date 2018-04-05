@@ -6,6 +6,7 @@ module.exports = () => {
 
     return async (ctx, next) => {
         ctx.send = render.bind(ctx)
+        ctx.log.error('ikcamp')
         await next()
 
         // 使用方法
